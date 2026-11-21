@@ -1,0 +1,248 @@
+/* styles.css - Interfaz LegalTech SaaS 2026 (Harvey AI / Linear Style) */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-caveat: 'Caveat', cursive, sans-serif;
+
+  --bg-main: #f8fafc;
+  --panel-dark: #0b0f17;
+  --card-bg: #ffffff;
+  --border-light: #e2e8f0;
+  --border-dark: #1e293b;
+  --accent-gold: #d97706;
+  --accent-gold-glow: rgba(217, 119, 6, 0.15);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografía Mono para Valores, Tiempos y Hash */
+.font-mono-val {
+  font-family: var(--font-mono);
+}
+
+/* Tipografía de Contrato Editorial Jurídico (Newsreader) */
+.contract-body {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #0f172a;
+}
+
+.contract-title-heading {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.clause-heading {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 0.6rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Fondo con Grilla de Puntos (Dot Matrix Grid) */
+.dot-grid-pattern {
+  background-color: #f1f5f9;
+  background-image: radial-gradient(#cbd5e1 1.25px, transparent 1.25px);
+  background-size: 18px 18px;
+}
+
+/* Vista Hoja Carta del Contrato */
+.paper-sheet {
+  background: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  min-height: 280mm;
+  padding: 3.5rem 4rem;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Marca de Agua Editorial */
+.legal-watermark-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-family: var(--font-serif);
+  font-size: 6rem;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.025);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Bento Grid Cards */
+.bento-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+}
+
+.bento-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.bento-card-active {
+  border-color: #d97706 !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%) !important;
+}
+
+/* Step Indicators (Linear Style) */
+.step-pill {
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+}
+
+.step-pill.active {
+  background: var(--panel-dark);
+  color: #f8fafc;
+  border-color: #334155;
+  box-shadow: 0 4px 12px rgba(11, 15, 23, 0.15);
+}
+
+.step-pill.completed {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+/* Bloqueo de Edición */
+.editing-locked input,
+.editing-locked textarea,
+.editing-locked select,
+.editing-locked button:not(.allow-when-locked) {
+  opacity: 0.65;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.allow-when-locked {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Modal Blur */
+.modal-backdrop-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Transición suave */
+.fade-in-fast {
+  animation: fadeInFast 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInFast {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* REGLAS DE IMPRESIÓN OFICIAL (@media print) */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  header,
+  nav,
+  .no-print,
+  #banner-disclaimer,
+  #form-sidebar,
+  .action-buttons,
+  .step-navigation,
+  #modal-completion {
+    display: none !important;
+  }
+
+  main {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #preview-container {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  .paper-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+  }
+
+  .legal-watermark-text {
+    display: none !important;
+  }
+
+  @page {
+    size: letter;
+    margin: 18mm 18mm 18mm 18mm;
+  }
+
+  .clause-heading {
+    page-break-after: avoid;
+  }
+
+  .contract-section {
+    page-break-inside: avoid;
+  }
+}
+
+/* ESTILOS FIRMA TIPOGRÁFICA Y CANVAS DE FIRMA */
+.font-caveat {
+  font-family: var(--font-caveat);
+}
+
+.sig-tab-btn {
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.sig-tab-btn.active {
+  border-color: #d97706;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.sig-canvas-container canvas {
+  touch-action: none;
+}
+
