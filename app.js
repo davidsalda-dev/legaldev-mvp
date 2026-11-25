@@ -29,6 +29,11 @@ const defaultState = {
   start_date: new Date().toISOString().split('T')[0],
   deliverables: '',
 
+  // Reglas Operativas Bolsa de Horas
+  vigenciaHoras: 'vencen',
+  aprobacionExcedentes: 'previa',
+  slaInsumos: '3dias',
+
   // Reglas Legales E2
   rule_r1_paid: false,
   rule_r3_active: true,
@@ -65,7 +70,11 @@ const demoData = {
   hourly_rate: 65000,
   contract_duration: 3,
   start_date: new Date().toISOString().split('T')[0],
-  deliverables: 'Repositorio de código fuente en GitHub, API REST documentada, despliegue en ambiente de staging y capacitación técnica de 2 horas.',
+  deliverables: 'Repositorio de código fuente en GitHub, API REST documentada, despliegue en ambiente de pruebas y capacitación técnica de 2 horas.',
+
+  vigenciaHoras: 'rollover',
+  aprobacionExcedentes: 'previa',
+  slaInsumos: '3dias',
 
   rule_r1_paid: false,
   rule_r3_active: true,
@@ -107,7 +116,7 @@ function showToast(message, type = 'success') {
   const toast = document.createElement('div');
   const bgClass = type === 'warning' ? 'bg-amber-900/90 border-amber-600 text-amber-100' :
                   type === 'error' ? 'bg-rose-950/90 border-rose-600 text-rose-100' :
-                  'bg-[#0b0f17] border-emerald-500/50 text-white';
+                  'bg-[#0F2E28] border-emerald-500/50 text-white';
 
   const iconName = type === 'warning' ? 'alert-triangle' : type === 'error' ? 'x-circle' : 'check-circle-2';
   const iconColor = type === 'warning' ? 'text-amber-400' : type === 'error' ? 'text-rose-400' : 'text-emerald-400';
@@ -270,7 +279,7 @@ function setupEventListeners() {
     });
   }
 
-  // Botón Demo
+  // Botón Demo NovaTech
   document.getElementById('btn-demo')?.addEventListener('click', () => {
     if (contractState.isLocked) return;
     loadDemoData(true);
@@ -328,6 +337,25 @@ function setupEventListeners() {
     reader.readAsText(file);
   });
 
+  // Limpiar Borrador
+  document.getElementById('btn-clear-draft')?.addEventListener('click', () => {
+    if (contractState.isLocked) {
+      showToast('Desbloquea el contrato primero para reiniciar el borrador', 'warning');
+      return;
+    }
+    if (confirm('¿Deseas reiniciar el borrador del contrato?')) {
+      contractState = {
+        ...defaultState,
+        signatures: { client: null, dev: null },
+        auditLog: []
+      };
+      addAuditLog('Borrador del contrato reiniciado');
+      saveState();
+      renderAll();
+      showToast('Borrador del contrato reiniciado');
+    }
+  });
+
   // Navegación de Pasos
   document.querySelectorAll('.step-pill').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -379,7 +407,7 @@ function setupEventListeners() {
     });
   });
 
-  // Limpiar Historial
+  // Limpiar Historial de Auditoría
   document.getElementById('btn-clear-history')?.addEventListener('click', () => {
     if (contractState.isLocked) return;
     contractState.auditLog = [];
@@ -387,11 +415,12 @@ function setupEventListeners() {
     showToast('Historial de cambios reiniciado');
   });
 
-  // Inputs de Texto
+  // Inputs de Texto y Selectores
   const textInputs = [
     'client_name', 'client_id', 'client_rep', 'client_city', 'client_email',
     'dev_name', 'dev_id', 'dev_city', 'dev_email',
     'contract_scope', 'hours_monthly', 'hourly_rate', 'contract_duration', 'start_date', 'deliverables',
+    'vigenciaHoras', 'aprobacionExcedentes', 'slaInsumos',
     'rule_r3_years'
   ];
 
@@ -442,10 +471,10 @@ function switchStep(stepNum) {
   saveState();
 
   const titles = [
-    'Partes Contractuales',
-    'Objeto y Bolsa de Horas',
-    'Reglas Legales (E2)',
-    'Auditoría y Resguardo'
+    '01 Partes del contrato',
+    '02 Objeto y bolsa de horas',
+    '03 Condiciones legales y pago',
+    '04 Firma electrónica Ley 527/1999'
   ];
 
   document.getElementById('current-step-num').textContent = stepNum;
@@ -480,7 +509,7 @@ function switchStep(stepNum) {
     nextBtn.className = "allow-when-locked bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-5 py-2 rounded-lg transition-colors shadow-md flex items-center gap-1.5 cursor-pointer font-sans";
   } else {
     if (nextBtnText) nextBtnText.textContent = 'Siguiente →';
-    nextBtn.className = "allow-when-locked bg-[#0b0f17] hover:bg-slate-800 text-amber-400 text-xs font-bold px-5 py-2 rounded-lg transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer font-sans";
+    nextBtn.className = "allow-when-locked bg-[#0F2E28] hover:bg-emerald-900 text-amber-300 text-xs font-bold px-5 py-2 rounded-lg transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer font-sans";
   }
 
   if (stepNum === 4) {
@@ -722,7 +751,7 @@ function renderSignatureCards(containerId) {
       <div class="bg-white border border-slate-200 rounded-xl p-3.5 space-y-3 shadow-xs">
         <div class="flex items-center justify-between border-b border-slate-100 pb-2">
           <span class="text-xs font-bold text-slate-900 font-sans flex items-center gap-1.5">
-            <i data-lucide="user-check" class="w-4 h-4 text-amber-600"></i> ${r.title}
+            <i data-lucide="user-check" class="w-4 h-4 text-emerald-700"></i> ${r.title}
           </span>
           <span class="bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
             <i data-lucide="clock" class="w-3 h-3 text-amber-600"></i> Pendiente de firma
@@ -871,6 +900,7 @@ function renderFormValues() {
     'client_name', 'client_id', 'client_rep', 'client_city', 'client_email',
     'dev_name', 'dev_id', 'dev_city', 'dev_email',
     'contract_scope', 'hours_monthly', 'hourly_rate', 'contract_duration', 'start_date', 'deliverables',
+    'vigenciaHoras', 'aprobacionExcedentes', 'slaInsumos',
     'rule_r3_years'
   ];
 
@@ -913,6 +943,35 @@ function renderCalculations() {
       r1Box.className = 'text-[11px] p-2 rounded-lg border mt-1 bg-amber-50 border-amber-200 text-amber-950 font-sans';
       r1Box.innerHTML = '<strong>Licencia Uso Limitado:</strong> Pago pendiente. El Desarrollador retiene los derechos patrimoniales.';
       if (bentoR1) bentoR1.classList.remove('bento-card-active');
+    }
+  }
+
+  // Actualizar badges en Columna 2 (Control de Legalidad)
+  const col2BadgeR1 = document.getElementById('col2-badge-r1');
+  const col2CardR1 = document.getElementById('col2-card-r1');
+  if (col2BadgeR1) {
+    if (contractState.rule_r1_paid) {
+      col2BadgeR1.className = 'bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
+      col2BadgeR1.innerHTML = '✓ Cesión Acreditada';
+      if (col2CardR1) col2CardR1.className = 'p-3 rounded-xl border border-emerald-300 bg-emerald-50/50 space-y-1.5 transition-all';
+    } else {
+      col2BadgeR1.className = 'bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
+      col2BadgeR1.innerHTML = '⚠️ Licencia Limitada';
+      if (col2CardR1) col2CardR1.className = 'p-3 rounded-xl border border-amber-300 bg-amber-50/50 space-y-1.5 transition-all';
+    }
+  }
+
+  const col2BadgeR3 = document.getElementById('col2-badge-r3');
+  const col2CardR3 = document.getElementById('col2-card-r3');
+  if (col2BadgeR3) {
+    if (contractState.rule_r3_active) {
+      col2BadgeR3.className = 'bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
+      col2BadgeR3.innerHTML = `✓ NDA Activo (${contractState.rule_r3_years}a)`;
+      if (col2CardR3) col2CardR3.className = 'p-3 rounded-xl border border-emerald-300 bg-emerald-50/50 space-y-1.5 transition-all';
+    } else {
+      col2BadgeR3.className = 'bg-slate-200 text-slate-700 border border-slate-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1';
+      col2BadgeR3.innerHTML = '⚪ Inactivo';
+      if (col2CardR3) col2CardR3.className = 'p-3 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5 transition-all';
     }
   }
 }
@@ -967,12 +1026,15 @@ async function updateSHA256(contractText) {
     const modalHash = document.getElementById('modal-hash-display');
     if (modalHash) modalHash.textContent = hashHex;
 
+    const headerHashBadge = document.getElementById('header-sha256-badge');
+    if (headerHashBadge) headerHashBadge.textContent = hashHex.substring(0, 16) + '...';
+
   } catch (err) {
     console.error('Error calculando SHA-256:', err);
   }
 }
 
-// RENDERIZAR DOCUMENTO DE CONTRATO (NEWSREADER EDITORIAL)
+// RENDERIZAR DOCUMENTO DE CONTRATO (EDITORIAL CON SERIFA)
 function renderPreview() {
   const previewContainer = document.getElementById('contract-preview');
   if (!previewContainer) return;
@@ -997,6 +1059,35 @@ function renderPreview() {
   const duration = contractState.contract_duration || 1;
   const startDate = contractState.start_date || '[FECHA DE INICIO]';
   const deliverables = contractState.deliverables || '[Definición de entregables e hitos del proyecto]';
+
+  // Actualizar Cuadrícula Resumen Superior en Columna 3
+  const gridClient = document.getElementById('summary-grid-client');
+  if (gridClient) gridClient.textContent = contractState.client_name || '---';
+
+  const gridDev = document.getElementById('summary-grid-dev');
+  if (gridDev) gridDev.textContent = contractState.dev_name || '---';
+
+  const gridVal = document.getElementById('summary-grid-value');
+  if (gridVal) gridVal.textContent = formattedMonthlyTotal;
+
+  const gridDur = document.getElementById('summary-grid-duration');
+  if (gridDur) gridDur.textContent = `${duration} mes(es)`;
+
+  // Parágrafos Operativos de Bolsa de Horas (Cláusula Segunda)
+  const vigenciaHorasVal = contractState.vigenciaHoras || 'vencen';
+  const aprobacionExcedentesVal = contractState.aprobacionExcedentes || 'previa';
+  const slaInsumosVal = contractState.slaInsumos || '3dias';
+
+  const parágrafoVigenciaText = vigenciaHorasVal === 'rollover'
+    ? `PARÁGRAFO PRIMERO — VIGENCIA Y ACUMULACIÓN DE HORAS NO EJECUTADAS: Las horas contratadas dentro de la bolsa mensual que no fueren consumidas al cierre del respectivo período mensual facturado podrán acumularse por una única vez para ser ejecutadas exclusivamente durante el mes calendario inmediatamente siguiente. Vencido dicho mes adicional sin haber sido utilizadas, las horas remanentes caducarán de pleno derecho sin lugar a reembolso, compensación ni prórroga adicional.`
+    : `PARÁGRAFO PRIMERO — VIGENCIA DE HORAS NO EJECUTADAS: Las horas contratadas dentro de la bolsa mensual que no fueren consumidas o requeridas por EL CONTRATANTE durante el respectivo período mensual facturado vencerán de pleno derecho al cierre de dicho mes, sin que haya lugar a su acumulación para períodos posteriores, reembolso, descuento ni compensación económica alguna, en razón a la disponibilidad técnica reservada por EL CONTRATISTA.`;
+
+  const parágrafoExcedentesText = aprobacionExcedentesVal === 'bloqueo'
+    ? `PARÁGRAFO SEGUNDO — PROTOCOLO ANTE EXCEDENTES Y SUSPENSIÓN AUTOMÁTICA: Agotada la totalidad de la bolsa de horas pactada para el mes en curso, EL CONTRATISTA suspenderá automáticamente la ejecución de nuevas tareas o requerimientos hasta el inicio del siguiente período mensual o hasta que EL CONTRATANTE imparta nueva orden de compra o adición presupuestal expresa mediante mensaje de datos con plena validez probatoria conforme a la Ley 527 de 1999.`
+    : `PARÁGRAFO SEGUNDO — PROTOCOLO DE AUTORIZACIÓN DE HORAS EXCEDENTES (LEY 527 DE 1999): Toda hora de servicio adicional que exceda la bolsa mensual pactada requerirá autorización previa, expresa y escrita de EL CONTRATANTE remitida mediante mensaje de datos (correo electrónico o canal digital oficial acordado) en los términos de la Ley 527 de 1999. Las horas excedentes debidamente autorizadas se facturarán a la misma tarifa unitaria de ${formattedRate} COP por hora.`;
+
+  const diasSla = slaInsumosVal === '5dias' ? 'cinco (5) días hábiles' : 'tres (3) días hábiles';
+  const parágrafoSLAText = `PARÁGRAFO TERCERO — PLAZO DE INSUMOS, ACUERDOS DE NIVEL DE SERVICIO Y SUSPENSIÓN POR MORA: EL CONTRATANTE se obliga a entregar oportunamente los accesos, credenciales, insumos técnicos, definiciones funcionales y aprobaciones requeridas dentro de un plazo máximo de ${diasSla} contados a partir de la solicitud formal de EL CONTRATISTA. Cualquier retraso o mora por parte de EL CONTRATANTE en la entrega de dichos insumos o aprobaciones suspenderá automáticamente los tiempos de respuesta, hitos y acuerdos de nivel de servicio (SLA) a cargo de EL CONTRATISTA por un término equivalente al de la demora, sin que ello genere incumplimiento contractual ni penalidad alguna.`;
 
   // Texto R1
   const r1ClauseText = contractState.rule_r1_paid
@@ -1069,6 +1160,9 @@ Entre los suscritos a saber: Por una parte, ${clientName}, identificado con NIT/
 PRIMERA: OBJETO. EL CONTRATISTA se obliga de manera independiente a ejecutar: ${scope}.
 
 SEGUNDA: BOLSA DE HORAS Y CONDICIONES ECONÓMICAS. Modalidad de bolsa de horas: ${hours} horas mensuales, tarifa de ${formattedRate} COP por hora. Valor mensual estimado de ${formattedMonthlyTotal} COP.
+${parágrafoVigenciaText}
+${parágrafoExcedentesText}
+${parágrafoSLAText}
 
 TERCERA: PLAZO Y VIGENCIA. Duración de ${duration} mes(es) a partir del ${startDate}.
 
@@ -1084,7 +1178,7 @@ OCTAVA: MENSAJES DE DATOS Y EQUIVALENCIA PROBATORIA (R4 - LEY 527/1999). Plena v
 
 NOVENA: GARANTÍA TÉCNICA DE CIBERSEGURIDAD Y SANIDAD (R5 - LEY 1273/2009). Entrega libre de código malicioso con saneamiento de fallas por 30 días calendario.
 
-DÉCIMA: INDEPENDENCIA Y AUSENCIA DE SUBORDINACIÓN. Relación comercial independiente sin vinculación laboral.
+DÉCIMA: INDEPENDENCIA Y AUSENCIA DE SUBORDINACIÓN. Las partes aclaran que la relación es estrictamente comercial e independiente, sin subordinación ni vínculo de carácter laboral.
 
 ${clientSigInfo}
 ${devSigInfo}
@@ -1093,72 +1187,75 @@ ${devSigInfo}
   previewContainer.innerHTML = `
     <!-- ENCABEZADO FORMAL EDITORIAL -->
     <div class="text-center space-y-2 border-b-2 border-slate-900 pb-5 mb-6">
-      <div class="text-[10px] font-mono font-bold tracking-widest text-amber-700 uppercase">REPÚBLICA DE COLOMBIA • CONTRATO COMERCIAL DIGITAL</div>
-      <h2 class="contract-title-heading uppercase text-slate-900 leading-tight">CONTRATO DE PRESTACIÓN DE SERVICIOS DE DESARROLLO DE SOFTWARE</h2>
+      <div class="text-[10px] font-mono font-bold tracking-widest text-[#0F2E28] uppercase">REPÚBLICA DE COLOMBIA • CONTRATO COMERCIAL DIGITAL</div>
+      <h2 class="contract-title-heading uppercase text-slate-900 leading-tight font-serif">CONTRATO DE PRESTACIÓN DE SERVICIOS DE DESARROLLO DE SOFTWARE</h2>
       <div class="inline-block bg-slate-100 text-slate-800 text-[11px] font-mono px-3 py-0.5 rounded-full font-medium border border-slate-300">
         Bolsa de Horas • Legislación Colombiana
       </div>
     </div>
 
-    <!-- CUERPO NEWSREADER -->
-    <div class="space-y-4 leading-relaxed text-justify">
+    <!-- CUERPO DEL CONTRATO -->
+    <div class="space-y-4 leading-relaxed text-justify font-serif">
       <p class="text-slate-900">
         Entre los suscritos a saber: Por una parte, <strong class="font-bold text-slate-950">${clientName}</strong>, identificado con NIT/C.C. <strong class="font-mono text-xs">${clientId}</strong>, domiciliado en la ciudad de <strong>${clientCity}</strong>, ${clientRep} quien para todos los efectos legales se denominará <strong>EL CONTRATANTE</strong>; y por la otra parte, <strong class="font-bold text-slate-950">${devName}</strong>, identificado con C.C./NIT <strong class="font-mono text-xs">${devId}</strong>, domiciliado en la ciudad de <strong>${devCity}</strong>, quien en adelante se denominará <strong>EL CONTRATISTA</strong>, han acordado celebrar el presente instrumento sujeto a las siguientes cláusulas:
       </p>
 
       <div class="contract-section">
-        <h3 class="clause-heading">PRIMERA: OBJETO DEL CONTRATO</h3>
+        <h3 class="clause-heading font-serif">PRIMERA: OBJETO DEL CONTRATO</h3>
         <p>EL CONTRATISTA se obliga de manera independiente a realizar para EL CONTRATANTE los servicios de desarrollo de software descritos a continuación: <em>${scope}</em>.</p>
       </div>
 
-      <div class="contract-section">
-        <h3 class="clause-heading">SEGUNDA: BOLSA DE HORAS Y CONDICIONES ECONÓMICAS</h3>
-        <p>El servicio se presta bajo el esquema de bolsa de horas. Se pactan <strong>${hours} horas mensuales</strong> a una tarifa unitaria de <strong class="font-mono text-xs">${formattedRate} COP</strong> por hora. El valor mensual estimado asciende a la suma de <strong class="font-mono text-xs bg-amber-100 text-amber-950 px-1.5 py-0.5 rounded border border-amber-300">${formattedMonthlyTotal} COP</strong>.</p>
+      <div class="contract-section space-y-2">
+        <h3 class="clause-heading font-serif">SEGUNDA: BOLSA DE HORAS Y CONDICIONES ECONÓMICAS</h3>
+        <p>El servicio se presta bajo el esquema de bolsa de horas. Se pactan <strong>${hours} horas mensuales</strong> a una tarifa unitaria de <strong class="font-mono text-xs">${formattedRate} COP</strong> por hora. El valor mensual estimado asciende a la suma de <strong class="font-mono text-xs bg-emerald-100 text-emerald-950 px-1.5 py-0.5 rounded border border-emerald-300">${formattedMonthlyTotal} COP</strong>.</p>
+        <p class="text-[11px] text-slate-800 pl-3 border-l-2 border-slate-200">${parágrafoVigenciaText}</p>
+        <p class="text-[11px] text-slate-800 pl-3 border-l-2 border-slate-200">${parágrafoExcedentesText}</p>
+        <p class="text-[11px] text-slate-800 pl-3 border-l-2 border-slate-200">${parágrafoSLAText}</p>
       </div>
 
       <div class="contract-section">
-        <h3 class="clause-heading">TERCERA: PLAZO DE EJECUCIÓN Y VIGENCIA</h3>
+        <h3 class="clause-heading font-serif">TERCERA: PLAZO DE EJECUCIÓN Y VIGENCIA</h3>
         <p>El plazo de ejecución será de <strong>${duration} mes(es)</strong>, contados a partir del día <strong class="font-mono text-xs">${startDate}</strong>.</p>
       </div>
 
       <div class="contract-section">
-        <h3 class="clause-heading">CUARTA: ENTREGABLES Y COMPONENTES TÉCNICOS</h3>
+        <h3 class="clause-heading font-serif">CUARTA: ENTREGABLES Y COMPONENTES TÉCNICOS</h3>
         <p>EL CONTRATISTA entregará los siguientes componentes: <em>${deliverables}</em>.</p>
       </div>
 
       <!-- REGLA R1 -->
       <div class="contract-section p-2.5 rounded-lg border ${contractState.rule_r1_paid ? 'bg-emerald-50/40 border-emerald-300' : 'bg-amber-50/40 border-amber-300'}">
-        <h3 class="clause-heading">QUINTA: REGIMEN DE DERECHOS PATRIMONIALES Y ESTADO DE PAGO (REGLA R1 - LEY 23/1982 / DECISIÓN ANDINA 351)</h3>
+        <h3 class="clause-heading font-serif">QUINTA: REGIMEN DE DERECHOS PATRIMONIALES Y ESTADO DE PAGO (REGLA R1 - LEY 23/1982 / DECISIÓN ANDINA 351)</h3>
         <p>${r1ClauseText}</p>
       </div>
 
       <!-- REGLA R2 -->
       <div class="contract-section">
-        <h3 class="clause-heading">SEXTA: RESERVA DE DERECHOS MORALES Y PORTAFOLIO PROFESIONAL (REGLA R2 - LEY 23/1982)</h3>
+        <h3 class="clause-heading font-serif">SEXTA: RESERVA DE DERECHOS MORALES Y PORTAFOLIO PROFESIONAL (REGLA R2 - LEY 23/1982)</h3>
         <p>Los derechos morales de autor son inalienables, inembargables e irrenunciables, permaneciendo perpetuamente en cabeza de EL CONTRATISTA. Se autoriza la mención del proyecto en portafolio profesional sin divulgar código fuente ni secretos comerciales.</p>
       </div>
 
       <!-- REGLA R3 -->
       <div class="contract-section">
-        <h3 class="clause-heading">SÉPTIMA: SECRETO EMPRESARIAL Y CONFIDENCIALIDAD (REGLA R3 - DECISIÓN ANDINA 486 Y LEY 256/1996)</h3>
+        <h3 class="clause-heading font-serif">SÉPTIMA: SECRETO EMPRESARIAL Y CONFIDENCIALIDAD (REGLA R3 - DECISIÓN ANDINA 486 Y LEY 256/1996)</h3>
         <p>${r3ClauseText}</p>
       </div>
 
       <!-- REGLA R4 -->
       <div class="contract-section">
-        <h3 class="clause-heading">OCTAVA: MENSAJES DE DATOS Y EQUIVALENCIA PROBATORIA (REGLA R4 - LEY 527/1999)</h3>
+        <h3 class="clause-heading font-serif">OCTAVA: MENSAJES DE DATOS Y EQUIVALENCIA PROBATORIA (REGLA R4 - LEY 527/1999)</h3>
         <p>De conformidad con la Ley 527 de 1999, el presente contrato digital goza de plena validez probatoria. La integridad de las cláusulas se valida mediante la huella criptográfica SHA-256 en el pie del documento.</p>
       </div>
 
       <!-- REGLA R5 -->
       <div class="contract-section">
-        <h3 class="clause-heading">NOVENA: GARANTÍA TÉCNICA DE CIBERSEGURIDAD Y SANIDAD (REGLA R5 - LEY 1273/2009)</h3>
+        <h3 class="clause-heading font-serif">NOVENA: GARANTÍA TÉCNICA DE CIBERSEGURIDAD Y SANIDAD (REGLA R5 - LEY 1273/2009)</h3>
         <p>EL CONTRATISTA garantiza la entrega de código libre de código malicioso o puertas traseras. Cobertura de saneamiento de fallas por treinta (30) días calendario tras cada entrega.</p>
       </div>
 
       <div class="contract-section">
-        <h3 class="clause-heading">DÉCIMA: INDEPENDENCIA Y AUSENCIA DE SUBORDINACIÓN</h3>
-        <p>Las partes aclaran que la relación es strictly comercial e independiente, sin subordinación ni vínculo de carácter laboral.</p>
+        <h3 class="clause-heading font-serif">DÉCIMA: INDEPENDENCIA Y AUSENCIA DE SUBORDINACIÓN</h3>
+        <p>Las partes aclaran que la relación es estrictamente comercial e independiente, sin subordinación ni vínculo de carácter laboral.</p>
       </div>
     </div>
 
@@ -1172,7 +1269,7 @@ ${devSigInfo}
     <div class="mt-8 pt-3 border-t-2 border-slate-900 text-[10px] space-y-1 text-slate-700 font-sans">
       <div class="flex justify-between items-center font-mono font-bold">
         <span>CERTIFICADO DE VALIDEZ Y FIRMA DIGITAL (LEY 527 DE 1999)</span>
-        <span class="text-amber-800">LEGALDEV 2026</span>
+        <span class="text-emerald-900">LEGALDEV 2026</span>
       </div>
       <div class="font-mono bg-slate-100 p-2.5 rounded-lg text-[9px] break-all border border-slate-300 text-slate-900 shadow-inner" id="preview-sha256-hash">
         Calculando sello criptográfico...

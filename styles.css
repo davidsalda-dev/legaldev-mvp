@@ -1,20 +1,19 @@
-/* styles.css - Interfaz LegalTech SaaS 2026 (Harvey AI / Linear Style) */
+/* styles.css - Interfaz LegalTech SaaS 2026 (LegalDev) */
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-serif: 'Newsreader', Georgia, serif;
+  --font-serif: 'Georgia', 'Merriweather', 'Newsreader', serif;
   --font-caveat: 'Caveat', cursive, sans-serif;
 
-  --bg-main: #f8fafc;
-  --panel-dark: #0b0f17;
+  --bg-main: #F4F6F5;
+  --panel-dark: #0F2E28;
   --card-bg: #ffffff;
   --border-light: #e2e8f0;
-  --border-dark: #1e293b;
   --accent-gold: #d97706;
-  --accent-gold-glow: rgba(217, 119, 6, 0.15);
+  --accent-emerald: #059669;
 }
 
 body {
@@ -29,17 +28,17 @@ body {
   font-family: var(--font-mono);
 }
 
-/* Tipografía de Contrato Editorial Jurídico (Newsreader) */
+/* Tipografía de Contrato Editorial Jurídico */
 .contract-body {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.75;
   color: #0f172a;
 }
 
 .contract-title-heading {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -48,8 +47,8 @@ body {
   font-family: var(--font-serif);
   font-size: 0.95rem;
   font-weight: 700;
-  color: #0f172a;
-  border-left: 3px solid var(--accent-gold);
+  color: #0F2E28;
+  border-left: 3px solid #059669;
   padding-left: 0.6rem;
   margin-top: 1.25rem;
   margin-bottom: 0.4rem;
@@ -57,7 +56,7 @@ body {
 
 /* Fondo con Grilla de Puntos (Dot Matrix Grid) */
 .dot-grid-pattern {
-  background-color: #f1f5f9;
+  background-color: #EBF0EE;
   background-image: radial-gradient(#cbd5e1 1.25px, transparent 1.25px);
   background-size: 18px 18px;
 }
@@ -65,9 +64,9 @@ body {
 /* Vista Hoja Carta del Contrato */
 .paper-sheet {
   background: #ffffff;
-  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 20px 40px -15px rgba(15, 46, 40, 0.1), 0 0 0 1px rgba(15, 23, 42, 0.05);
   min-height: 280mm;
-  padding: 3.5rem 4rem;
+  padding: 3.5rem 3.5rem;
   border-radius: 8px;
   position: relative;
   transition: all 0.3s ease;
@@ -80,9 +79,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) rotate(-25deg);
   font-family: var(--font-serif);
-  font-size: 6rem;
+  font-size: 5.5rem;
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.025);
+  color: rgba(15, 46, 40, 0.03);
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -108,11 +107,11 @@ body {
 }
 
 .bento-card-active {
-  border-color: #d97706 !important;
-  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%) !important;
+  border-color: #059669 !important;
+  background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%) !important;
 }
 
-/* Step Indicators (Linear Style) */
+/* Step Indicators */
 .step-pill {
   transition: all 0.2s ease;
   border: 1px solid #e2e8f0;
@@ -122,9 +121,9 @@ body {
 
 .step-pill.active {
   background: var(--panel-dark);
-  color: #f8fafc;
-  border-color: #334155;
-  box-shadow: 0 4px 12px rgba(11, 15, 23, 0.15);
+  color: #fbbf24;
+  border-color: #047857;
+  box-shadow: 0 4px 12px rgba(15, 46, 40, 0.2);
 }
 
 .step-pill.completed {
@@ -237,12 +236,11 @@ body {
 }
 
 .sig-tab-btn.active {
-  border-color: #d97706;
-  color: #0f172a;
+  border-color: #059669;
+  color: #0F2E28;
   font-weight: 700;
 }
 
 .sig-canvas-container canvas {
   touch-action: none;
 }
-

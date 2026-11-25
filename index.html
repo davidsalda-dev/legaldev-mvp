@@ -3,84 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LegalDev - LegalTech SaaS 2026</title>
+  <title>LegalDev — Contratos freelance de desarrollo de software</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-900">
+<body class="min-h-screen flex flex-col bg-[#F4F6F5] text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-900 pb-20">
 
-  <!-- BARRA SUPERIOR HEADER SAAS 2026 (STYLE HARVEY AI / LINEAR) -->
-  <header class="bg-[#0b0f17] text-white shadow-xl sticky top-0 z-40 border-b border-slate-800/80 no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+  <!-- BARRA SUPERIOR HEADER SAAS (#0F2E28) -->
+  <header class="bg-[#0F2E28] text-white shadow-md sticky top-0 z-40 border-b border-emerald-950/80 no-print">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
       
-      <!-- Logo y Marca SaaS -->
+      <!-- Logo "LD" y Título -->
       <div class="flex items-center space-x-3">
-        <div class="bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 p-2 rounded-xl text-slate-950 shadow-lg shadow-amber-500/10 border border-amber-300/30 flex items-center justify-center">
-          <i data-lucide="scale" class="w-5 h-5 stroke-[2.5]"></i>
+        <div class="bg-gradient-to-tr from-emerald-800 to-emerald-700 text-amber-300 border border-amber-400/40 text-sm font-mono font-black px-2.5 py-1 rounded-lg flex items-center justify-center tracking-wider shadow-inner">
+          LD
         </div>
         <div>
-          <h1 class="text-base font-bold tracking-tight leading-tight flex items-center gap-2 font-sans text-slate-100">
-            LegalDev <span class="bg-slate-800 text-amber-400 border border-amber-500/20 text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider">SaaS 2026</span>
+          <h1 class="text-sm sm:text-base font-bold tracking-tight leading-tight flex items-center gap-2 font-sans text-white">
+            LegalDev <span class="text-emerald-100 font-normal">— Contratos freelance de desarrollo de software</span>
           </h1>
-          <p class="text-[11px] text-slate-400 font-sans">Contrato de Desarrollo de Software • Bolsa de Horas</p>
         </div>
       </div>
 
-      <!-- Acciones de Barra Superior -->
-      <div class="flex flex-wrap items-center gap-2.5">
+      <!-- Acciones de Barra Superior: Selector de Perfil y Aviso Académico -->
+      <div class="flex flex-wrap items-center gap-3">
         
         <!-- Selector de Perfil/Rol -->
-        <div class="flex items-center bg-slate-900/90 rounded-lg p-1 border border-slate-800">
-          <span class="text-[11px] text-slate-400 px-2 font-medium flex items-center gap-1">
-            <i data-lucide="user-check" class="w-3.5 h-3.5"></i> Perfil:
+        <div class="flex items-center bg-emerald-950/80 rounded-lg p-1 border border-emerald-800/80">
+          <span class="text-[11px] text-slate-300 px-2 font-medium flex items-center gap-1 font-sans">
+            <i data-lucide="user-check" class="w-3.5 h-3.5 text-amber-400"></i> Perfil:
           </span>
-          <select id="role-select" class="bg-[#0b0f17] text-xs text-amber-300 rounded px-2 py-1 font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer border border-slate-800">
-            <option value="developer">👨‍💻 Desarrollador / Contratista</option>
+          <select id="role-select" class="bg-[#0F2E28] text-xs text-amber-300 rounded px-2 py-1 font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer border border-emerald-800">
+            <option value="developer">👨‍💻 Contratista / Desarrollador</option>
             <option value="reviewer">👔 Cliente / Revisor (Modo Solo Lectura R1-R5)</option>
           </select>
         </div>
 
-        <!-- Botón Demo -->
-        <button id="btn-demo" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-amber-500/30 text-xs font-semibold px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-          <span>Demo NovaTech</span>
-        </button>
-
-        <!-- Botón Compartir Enlace -->
-        <button id="btn-share-link" class="allow-when-locked bg-slate-900 hover:bg-slate-800 text-amber-400 border border-amber-500/30 text-xs font-semibold px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm" title="Generar enlace de firma remota por URL">
-          <i data-lucide="share-2" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>Compartir Enlace</span>
-        </button>
-
-        <!-- Botón Exportar PDF -->
-        <button id="btn-print" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-md hover:shadow-amber-500/20">
-          <i data-lucide="printer" class="w-3.5 h-3.5 stroke-[2.5]"></i>
-          <span>Exportar PDF</span>
-        </button>
-
-        <!-- JSON Tools -->
-        <div class="flex items-center border border-slate-800 rounded-lg overflow-hidden bg-slate-900">
-          <button id="btn-export-json" class="hover:bg-slate-800 text-slate-300 text-xs font-medium px-2.5 py-2 transition-colors border-r border-slate-800 flex items-center gap-1" title="Descargar datos en JSON">
-            <i data-lucide="file-json" class="w-3.5 h-3.5 text-amber-400"></i> JSON
-          </button>
-          <label class="hover:bg-slate-800 text-slate-300 text-xs font-medium px-2.5 py-2 transition-colors cursor-pointer flex items-center gap-1" title="Cargar datos desde JSON">
-            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-            <input type="file" id="input-import-json" accept=".json" class="hidden">
-          </label>
+        <!-- Aviso Académico -->
+        <div class="hidden md:flex items-center gap-1.5 bg-emerald-950/60 text-emerald-100 border border-emerald-800/80 text-[11px] px-3 py-1.5 rounded-lg font-sans">
+          <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
+          <span>Herramienta académica · No sustituye la revisión de un profesional jurídico</span>
         </div>
 
       </div>
     </div>
   </header>
 
-  <!-- BANNER LEGAL DISCLAIMER -->
-  <div id="banner-disclaimer" class="bg-amber-500/10 border-b border-amber-500/20 text-amber-950 text-xs py-2 px-4 no-print">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+  <!-- BANNER LEGAL DISCLAIMER (MÓVIL / SECUNDARIO) -->
+  <div id="banner-disclaimer" class="bg-amber-500/10 border-b border-amber-500/20 text-amber-950 text-xs py-2 px-4 no-print md:hidden">
+    <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-3">
       <div class="flex items-center gap-2">
         <i data-lucide="shield-alert" class="w-4 h-4 text-amber-600 shrink-0"></i>
         <p class="leading-relaxed">
-          <strong>Aviso Legal y Académico:</strong> Prototipo parametrizado para la formalización de contratos de desarrollo de software en Colombia (Leyes 23/1982, 527/1999, 1273/2009 y Decisiones Andinas 351/486). No sustituye la asesoría legal experta.
+          <strong>Aviso Legal y Académico:</strong> Prototipo parametrizado para contratos de desarrollo de software en Colombia (Leyes 23/1982, 527/1999, 1273/2009 y Decisiones Andinas 351/486). No sustituye la asesoría jurídica.
         </p>
       </div>
       <span id="header-lock-badge" class="hidden bg-emerald-800 text-emerald-100 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border border-emerald-600 flex items-center gap-1">
@@ -91,7 +67,7 @@
 
   <!-- BANNER MODO FIRMA REMOTA -->
   <div id="remote-sign-banner" class="hidden bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-slate-950 font-bold text-xs py-2.5 px-4 shadow-md no-print border-b border-amber-600/40">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+    <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-3">
       <div class="flex items-center gap-2">
         <i data-lucide="link" class="w-4 h-4 text-slate-950 shrink-0"></i>
         <p class="leading-relaxed">
@@ -104,248 +80,255 @@
     </div>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL LAYOUT 2 COLUMNAS -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <!-- CONTENIDO PRINCIPAL LAYOUT 3 COLUMNAS SIMULTÁNEAS -->
+  <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-grow w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
       
-      <!-- COLUMNA IZQUIERDA: FORMULARIO MULTIPASO (45% -> 5 cols en lg) -->
-      <section id="form-sidebar" class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden no-print">
+      <!-- COLUMNA 1: EXPEDIENTE CONTRACTUAL / DATOS DEL CONTRATO (IZQUIERDA - lg:col-span-4) -->
+      <section id="form-sidebar" class="lg:col-span-4 bg-white rounded-xl shadow-sm border border-slate-200/90 overflow-hidden no-print">
         
         <!-- BANNER INDICADOR DE ESTADO BLOQUEADO -->
-        <div id="locked-edition-banner" class="hidden bg-[#0b0f17] text-amber-400 px-4 py-2.5 text-xs font-semibold flex items-center justify-between border-b border-amber-500/30">
+        <div id="locked-edition-banner" class="hidden bg-[#0F2E28] text-amber-300 px-4 py-2.5 text-xs font-semibold flex items-center justify-between border-b border-emerald-800">
           <span class="flex items-center gap-1.5 font-mono text-[11px]">
-            <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i> Documento Finalizado y Sellado (Modo Solo Lectura)
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i> Documento Sellado (Modo Solo Lectura)
           </span>
           <button id="btn-unlock-inline" class="allow-when-locked text-[10px] font-mono bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded hover:bg-amber-400 transition-colors flex items-center gap-1">
             <i data-lucide="unlock" class="w-3 h-3"></i> Desbloquear
           </button>
         </div>
 
-        <!-- ENCABEZADO DE PASOS Y NAVEGACIÓN PILLS -->
-        <div class="bg-slate-50/80 border-b border-slate-200 p-4">
+        <!-- ENCABEZADO CON TÍTULO EDITORIAL CON SERIFA -->
+        <div class="bg-slate-50/90 border-b border-slate-200 p-4">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
-              <span class="bg-[#0b0f17] text-amber-400 rounded-md w-5 h-5 inline-flex items-center justify-center text-[11px] font-mono shadow-sm" id="current-step-num">1</span>
-              <span id="step-title" class="font-bold text-slate-800">Partes Contractuales</span>
-            </h2>
-            <span class="text-[11px] font-mono font-semibold text-slate-500" id="step-progress-label">Paso 1 de 4</span>
+            <div>
+              <h2 class="text-base font-serif font-bold text-slate-900 flex items-center gap-2">
+                <i data-lucide="folder-git-2" class="w-4 h-4 text-[#0F2E28]"></i> Datos del contrato
+              </h2>
+              <p class="text-[11px] text-slate-500 font-sans mt-0.5">Expediente Contractual Parametrizado</p>
+            </div>
+            <span class="text-[11px] font-mono font-semibold text-slate-500 bg-slate-200/60 px-2 py-0.5 rounded" id="step-progress-label">Paso 1 de 4</span>
           </div>
 
-          <!-- Indicadores de Paso estilo Linear -->
-          <div class="grid grid-cols-4 gap-1.5">
-            <button data-step="1" class="step-pill active py-2 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
-              <span class="font-mono text-[11px]">P1</span>
-              <span class="text-[10px] font-normal opacity-80 hidden sm:inline">Partes</span>
+          <!-- SECCIONES NUMERADAS (01, 02, 03, 04) -->
+          <div class="grid grid-cols-4 gap-1">
+            <button data-step="1" class="step-pill active py-1.5 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
+              <span class="font-mono text-[11px] font-bold">01</span>
+              <span class="text-[9px] font-normal opacity-90 hidden sm:inline truncate w-full text-center">Partes</span>
             </button>
-            <button data-step="2" class="step-pill py-2 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
-              <span class="font-mono text-[11px]">P2</span>
-              <span class="text-[10px] font-normal opacity-80 hidden sm:inline">Bolsa</span>
+            <button data-step="2" class="step-pill py-1.5 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
+              <span class="font-mono text-[11px] font-bold">02</span>
+              <span class="text-[9px] font-normal opacity-90 hidden sm:inline truncate w-full text-center">Objeto</span>
             </button>
-            <button data-step="3" class="step-pill py-2 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
-              <span class="font-mono text-[11px]">P3</span>
-              <span class="text-[10px] font-normal opacity-80 hidden sm:inline">Reglas E2</span>
+            <button data-step="3" class="step-pill py-1.5 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
+              <span class="font-mono text-[11px] font-bold">03</span>
+              <span class="text-[9px] font-normal opacity-90 hidden sm:inline truncate w-full text-center">Condiciones</span>
             </button>
-            <button data-step="4" class="step-pill py-2 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
-              <span class="font-mono text-[11px]">P4</span>
-              <span class="text-[10px] font-normal opacity-80 hidden sm:inline">Auditoría</span>
+            <button data-step="4" class="step-pill py-1.5 px-1 text-center rounded-lg text-xs font-semibold flex flex-col items-center gap-0.5">
+              <span class="font-mono text-[11px] font-bold">04</span>
+              <span class="text-[9px] font-normal opacity-90 hidden sm:inline truncate w-full text-center">Firma</span>
             </button>
+          </div>
+
+          <div class="mt-2.5 text-[11px] text-slate-800 font-semibold flex items-center gap-1.5">
+            <span class="bg-[#0F2E28] text-amber-300 rounded-md w-4 h-4 inline-flex items-center justify-center text-[10px] font-mono" id="current-step-num">1</span>
+            <span id="step-title" class="font-bold text-slate-800 font-sans">01 Partes del contrato</span>
           </div>
         </div>
 
-        <!-- FORMULARIO DE PASOS -->
-        <div class="p-5 max-h-[calc(100vh-250px)] overflow-y-auto space-y-5">
+        <!-- FORMULARIO DE SECCIONES NUMERADAS EN COLUMNA 1 -->
+        <div class="p-4 max-h-[calc(100vh-290px)] overflow-y-auto space-y-4">
 
-          <!-- PASO 1: PARTES CONTRACTUALES -->
+          <!-- 01 PARTES DEL CONTRATO -->
           <div id="step-content-1" class="step-content space-y-4 fade-in-fast">
             <div class="border-b border-slate-100 pb-2">
-              <h3 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1.5">
-                <i data-lucide="building-2" class="w-4 h-4 text-amber-600"></i> 1. Datos del Contratante (Cliente)
+              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
+                <i data-lucide="building-2" class="w-4 h-4 text-[#0F2E28]"></i> 01. Datos del Contratante (Cliente)
               </h3>
             </div>
             
             <div class="space-y-3">
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Razón Social o Nombre Completo *</label>
-                <input type="text" id="client_name" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="Ej: NovaTech Solutions S.A.S.">
+                <input type="text" id="client_name" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="Ej: NovaTech Solutions S.A.S.">
               </div>
 
               <div class="grid grid-cols-2 gap-3">
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">NIT / C.C. *</label>
-                  <input type="text" id="client_id" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all font-mono" placeholder="Ej: 901.888.777-1">
+                  <input type="text" id="client_id" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all font-mono" placeholder="Ej: 901.888.777-1">
                 </div>
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">Representante Legal</label>
-                  <input type="text" id="client_rep" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="Ej: Carlos Eduardo Mendoza">
+                  <input type="text" id="client_rep" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="Ej: Carlos Eduardo Mendoza">
                 </div>
               </div>
 
               <div class="grid grid-cols-2 gap-3">
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">Ciudad Domicilio *</label>
-                  <input type="text" id="client_city" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="Ej: Bogotá D.C.">
+                  <input type="text" id="client_city" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="Ej: Bogotá D.C.">
                 </div>
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">Correo Electrónico *</label>
-                  <input type="email" id="client_email" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="contacto@novatech.co">
+                  <input type="email" id="client_email" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="contacto@novatech.co">
                 </div>
               </div>
             </div>
 
             <div class="border-b border-slate-100 pt-2 pb-2">
-              <h3 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1.5">
-                <i data-lucide="code-2" class="w-4 h-4 text-amber-600"></i> 2. Datos del Contratista (Desarrollador)
+              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
+                <i data-lucide="code-2" class="w-4 h-4 text-[#0F2E28]"></i> Datos del Contratista (Desarrollador)
               </h3>
             </div>
 
             <div class="space-y-3">
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Nombre / Razón Social *</label>
-                <input type="text" id="dev_name" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="Ej: LegalDev Team / Juan Pérez">
+                <input type="text" id="dev_name" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="Ej: LegalDev Team / Juan Pérez">
               </div>
 
               <div class="grid grid-cols-2 gap-3">
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">C.C. / NIT *</label>
-                  <input type="text" id="dev_id" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all font-mono" placeholder="Ej: 1.098.765.432">
+                  <input type="text" id="dev_id" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all font-mono" placeholder="Ej: 1.098.765.432">
                 </div>
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">Ciudad Domicilio *</label>
-                  <input type="text" id="dev_city" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="Ej: Medellín">
+                  <input type="text" id="dev_city" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="Ej: Medellín">
                 </div>
               </div>
 
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Correo Electrónico *</label>
-                <input type="email" id="dev_email" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="dev@legaldev.co">
+                <input type="email" id="dev_email" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="dev@legaldev.co">
               </div>
             </div>
           </div>
 
-          <!-- PASO 2: OBJETO Y BOLSA DE HORAS -->
+          <!-- 02 OBJETO Y BOLSA DE HORAS -->
           <div id="step-content-2" class="step-content space-y-4 hidden fade-in-fast">
             <div class="border-b border-slate-100 pb-2">
-              <h3 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1.5">
-                <i data-lucide="clock" class="w-4 h-4 text-amber-600"></i> Alcance y Esquema de Bolsa de Horas
+              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
+                <i data-lucide="clock" class="w-4 h-4 text-[#0F2E28]"></i> 02. Objeto y Bolsa de Horas
               </h3>
             </div>
 
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Objeto General del Contrato *</label>
-              <textarea id="contract_scope" rows="3" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="Ej: Prestación de servicios de desarrollo de software para el módulo CRM Web..."></textarea>
+              <textarea id="contract_scope" rows="3" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="Ej: Prestación de servicios de desarrollo de software para el módulo CRM Web..."></textarea>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Horas Mensuales *</label>
-                <input type="number" id="hours_monthly" min="0" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all font-mono" placeholder="80">
+                <input type="number" id="hours_monthly" min="0" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all font-mono" placeholder="80">
               </div>
 
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Tarifa por Hora (COP) *</label>
-                <input type="number" id="hourly_rate" min="0" step="1000" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all font-mono" placeholder="65000">
+                <input type="number" id="hourly_rate" min="0" step="1000" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all font-mono" placeholder="65000">
               </div>
             </div>
 
-            <!-- TARJETA DE CÁLCULO MONETARIO -->
-            <div class="bg-gradient-to-r from-[#0b0f17] to-slate-900 text-white rounded-xl p-3.5 shadow-sm border border-slate-800 space-y-1">
+            <!-- TARJETA CÁLCULO MONETARIO -->
+            <div class="bg-[#0F2E28] text-white rounded-xl p-3.5 shadow-sm border border-emerald-900 space-y-1">
               <div class="flex justify-between items-center text-xs">
                 <span class="text-slate-300 font-medium">Valor Mensual Estimado:</span>
-                <span id="calc-monthly-total" class="font-mono text-amber-400 font-bold text-sm">$0 COP</span>
+                <span id="calc-monthly-total" class="font-mono text-amber-300 font-bold text-sm">$0 COP</span>
               </div>
-              <p class="text-[10px] text-slate-400">Calculado automáticamente en tiempo real según la bolsa de horas pactada.</p>
+              <p class="text-[10px] text-emerald-200/80">Calculado automáticamente en tiempo real según la bolsa de horas pactada.</p>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Duración (Meses)</label>
-                <input type="number" id="contract_duration" min="1" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all font-mono" placeholder="3">
+                <input type="number" id="contract_duration" min="1" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all font-mono" placeholder="3">
               </div>
 
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Fecha de Inicio *</label>
-                <input type="date" id="start_date" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all font-mono">
+                <input type="date" id="start_date" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all font-mono">
+              </div>
+            </div>
+
+            <!-- REGLAS OPERATIVAS DE BOLSA DE HORAS -->
+            <div class="border-t border-slate-100 pt-3 space-y-3">
+              <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
+                <i data-lucide="sliders" class="w-4 h-4 text-[#0F2E28]"></i> Reglas Operativas de la Bolsa
+              </h4>
+
+              <div>
+                <label for="vigenciaHoras" class="block text-xs font-semibold text-slate-700 mb-1">Vigencia de Horas no Consumidas *</label>
+                <select id="vigenciaHoras" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all text-slate-800">
+                  <option value="vencen">Vencen al cierre del mes facturado</option>
+                  <option value="rollover">Se acumulan (rollover) únicamente para el mes siguiente</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="aprobacionExcedentes" class="block text-xs font-semibold text-slate-700 mb-1">Aprobación de Horas Excedentes *</label>
+                <select id="aprobacionExcedentes" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all text-slate-800">
+                  <option value="previa">Requiere autorización previa por mensaje de datos a la misma tarifa</option>
+                  <option value="bloqueo">Suspensión automática de tareas al agotar la bolsa hasta nueva orden</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="slaInsumos" class="block text-xs font-semibold text-slate-700 mb-1">Plazo de Insumos y SLA *</label>
+                <select id="slaInsumos" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all text-slate-800">
+                  <option value="3dias">3 días hábiles para entrega de accesos/insumos (suspende SLA por mora del cliente)</option>
+                  <option value="5dias">5 días hábiles para entrega de accesos/insumos (suspende SLA por mora del cliente)</option>
+                </select>
               </div>
             </div>
 
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Entregables Principales</label>
-              <textarea id="deliverables" rows="2" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="Ej: Código fuente en GitHub, documentación de API REST, ambiente de pruebas."></textarea>
+              <textarea id="deliverables" rows="2" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none transition-all" placeholder="Ej: Repositorio de código fuente en GitHub, API REST documentada, ambiente de pruebas."></textarea>
             </div>
           </div>
 
-          <!-- PASO 3: REGLAS LEGALES OBLIGATORIAS E2 (BENTO GRID LAYOUT) -->
+          <!-- 03 CONDICIONES LEGALES Y PAGO -->
           <div id="step-content-3" class="step-content space-y-3 hidden fade-in-fast">
             <div class="border-b border-slate-100 pb-2 flex justify-between items-center">
-              <h3 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1.5">
-                <i data-lucide="layout-grid" class="w-4 h-4 text-amber-600"></i> Bento Grid: Reglas Legales (E2)
+              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
+                <i data-lucide="scale" class="w-4 h-4 text-[#0F2E28]"></i> 03. Condiciones legales y pago
               </h3>
               <span id="reviewer-lock-badge" class="hidden bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-300">
                 🔒 Revisor (Solo Lectura)
               </span>
             </div>
 
-            <!-- BENTO GRID CONTENEDOR -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-              <!-- BENTO ITEM 1: REGLA R1 (SPAN 2 COLS) -->
-              <div class="bento-card sm:col-span-2 space-y-2">
+            <!-- CONTROLES INTERACTIVOS R1 Y R3 -->
+            <div class="space-y-3 text-xs">
+              
+              <div class="bento-card space-y-2">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="flex items-center gap-1.5">
-                    <span class="p-1.5 bg-amber-100 text-amber-800 rounded-lg">
-                      <i data-lucide="coins" class="w-4 h-4"></i>
-                    </span>
-                    <h4 class="text-xs font-bold text-slate-900">R1. Cesión Patrimonial Condicionada al Pago</h4>
-                  </div>
-                  <span class="bg-blue-50 text-blue-700 border border-blue-200 text-[9px] font-mono font-bold px-2 py-0.5 rounded-full">Ley 23/1982</span>
+                  <h4 class="text-xs font-bold text-slate-900">R1. Cesión Patrimonial Condicionada al Pago</h4>
+                  <span class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[9px] font-mono font-bold px-2 py-0.5 rounded-full">Ley 23/1982</span>
                 </div>
                 <p class="text-[11px] text-slate-600 leading-relaxed">
                   Condiciona la transferencia económica del software al abono efectivo de la tarifa. En pago pendiente, aplica Licencia de Uso Limitada.
                 </p>
                 <label class="inline-flex items-center gap-2 cursor-pointer pt-1">
-                  <input type="checkbox" id="rule_r1_paid" class="rule-input rounded text-amber-600 focus:ring-amber-500 h-4 w-4">
+                  <input type="checkbox" id="rule_r1_paid" class="rule-input rounded text-emerald-700 focus:ring-emerald-600 h-4 w-4">
                   <span class="text-xs font-semibold text-slate-800">Marcar pago de la mensualidad como ACREDITADO</span>
                 </label>
                 <div id="r1-status-box" class="text-[11px] p-2 rounded-lg border mt-1 font-sans"></div>
               </div>
 
-              <!-- BENTO ITEM 2: REGLA R2 (SPAN 1 COL) -->
               <div class="bento-card space-y-2">
                 <div class="flex items-center justify-between gap-1">
-                  <div class="flex items-center gap-1.5">
-                    <span class="p-1.5 bg-indigo-100 text-indigo-800 rounded-lg">
-                      <i data-lucide="award" class="w-4 h-4"></i>
-                    </span>
-                    <h4 class="text-xs font-bold text-slate-900">R2. Derechos Morales</h4>
-                  </div>
-                  <span class="bg-indigo-50 text-indigo-700 border border-indigo-200 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full">Inalienable</span>
+                  <h4 class="text-xs font-bold text-slate-900">R3. Secreto Empresarial y NDA</h4>
+                  <span class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full">Dec. Andina 486</span>
                 </div>
                 <p class="text-[11px] text-slate-600 leading-relaxed">
-                  Paternidad inalterable (Ley 23/1982) con permiso para incluir el proyecto en portafolio profesional.
-                </p>
-                <div class="bg-slate-100 text-slate-700 text-[10px] font-mono px-2 py-1 rounded-md font-medium">
-                  ✓ Cláusula Imperativa
-                </div>
-              </div>
-
-              <!-- BENTO ITEM 3: REGLA R3 (SPAN 1 COL) -->
-              <div class="bento-card space-y-2">
-                <div class="flex items-center justify-between gap-1">
-                  <div class="flex items-center gap-1.5">
-                    <span class="p-1.5 bg-amber-100 text-amber-800 rounded-lg">
-                      <i data-lucide="lock" class="w-4 h-4"></i>
-                    </span>
-                    <h4 class="text-xs font-bold text-slate-900">R3. Secreto (NDA)</h4>
-                  </div>
-                  <span class="bg-amber-50 text-amber-700 border border-amber-200 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full">Dec. Andina 486</span>
-                </div>
-                <p class="text-[11px] text-slate-600 leading-relaxed">
-                  Protección de confidencialidad y borrado seguro de copias no entregadas.
+                  Protección de confidencialidad y borrado seguro de copias de trabajo no entregadas.
                 </p>
                 <div class="flex items-center justify-between gap-2 pt-1 border-t border-slate-100">
                   <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                    <input type="checkbox" id="rule_r3_active" class="rule-input rounded text-amber-600 focus:ring-amber-500 h-3.5 w-3.5" checked>
-                    <span class="text-[11px] font-semibold text-slate-800">NDA</span>
+                    <input type="checkbox" id="rule_r3_active" class="rule-input rounded text-emerald-700 focus:ring-emerald-600 h-3.5 w-3.5" checked>
+                    <span class="text-[11px] font-semibold text-slate-800">Acuerdo NDA Activo</span>
                   </label>
                   <select id="rule_r3_years" class="rule-input text-[11px] border border-slate-200 rounded p-1 bg-white font-mono">
                     <option value="1">1 año</option>
@@ -356,60 +339,27 @@
                 </div>
               </div>
 
-              <!-- BENTO ITEM 4: REGLA R4 (SPAN 1 COL) -->
-              <div class="bento-card space-y-2">
-                <div class="flex items-center justify-between gap-1">
-                  <div class="flex items-center gap-1.5">
-                    <span class="p-1.5 bg-emerald-100 text-emerald-800 rounded-lg">
-                      <i data-lucide="fingerprint" class="w-4 h-4"></i>
-                    </span>
-                    <h4 class="text-xs font-bold text-slate-900">R4. Sello SHA-256</h4>
-                  </div>
-                  <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full">Ley 527/1999</span>
-                </div>
-                <p class="text-[11px] text-slate-600 leading-relaxed">
-                  Equivalencia probatoria de mensaje de datos validado por hash criptográfico inalterable.
-                </p>
-              </div>
-
-              <!-- BENTO ITEM 5: REGLA R5 (SPAN 1 COL) -->
-              <div class="bento-card space-y-2">
-                <div class="flex items-center justify-between gap-1">
-                  <div class="flex items-center gap-1.5">
-                    <span class="p-1.5 bg-rose-100 text-rose-800 rounded-lg">
-                      <i data-lucide="shield-check" class="w-4 h-4"></i>
-                    </span>
-                    <h4 class="text-xs font-bold text-slate-900">R5. Anti-Malware</h4>
-                  </div>
-                  <span class="bg-rose-50 text-rose-700 border border-rose-200 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full">Ley 1273/2009</span>
-                </div>
-                <p class="text-[11px] text-slate-600 leading-relaxed">
-                  Garantía contra código malicioso con 30 días calendario de saneamiento técnico.
-                </p>
-              </div>
-
             </div>
           </div>
 
-          <!-- PASO 4: AUDITORÍA Y HISTORIAL -->
+          <!-- 04 FIRMA ELECTRÓNICA LEY 527/1999 -->
           <div id="step-content-4" class="step-content space-y-4 hidden fade-in-fast">
             
-            <!-- MÓDULO DE FIRMA ELECTRÓNICA DUAL (LEY 527 DE 1999) -->
             <div class="border-b border-slate-100 pb-2">
-              <h3 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1.5">
-                <i data-lucide="pen-tool" class="w-4 h-4 text-amber-600"></i> Módulo de Firma Electrónica (Ley 527/1999)
+              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
+                <i data-lucide="pen-tool" class="w-4 h-4 text-[#0F2E28]"></i> 04. Firma electrónica Ley 527/1999
               </h3>
               <p class="text-[11px] text-slate-500 mt-0.5">Estampa la firma del Contratante o Contratista en canvas táctil/mouse o tipografía digital.</p>
             </div>
 
-            <!-- CONTENEDOR DE TARJETAS DE FIRMA STEP 4 -->
+            <!-- CONTENEDOR DE TARJETAS DE FIRMA -->
             <div id="signature-cards-step4" class="space-y-4">
               <!-- Renderizado dinámicamente desde app.js -->
             </div>
 
             <div class="border-b border-slate-100 pt-3 pb-2 flex justify-between items-center">
-              <h3 class="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1.5">
-                <i data-lucide="history" class="w-4 h-4 text-amber-600"></i> Bitácora de Auditoría
+              <h3 class="text-xs font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
+                <i data-lucide="history" class="w-4 h-4 text-[#0F2E28]"></i> Bitácora de Auditoría
               </h3>
               <button id="btn-clear-history" class="text-[10px] font-mono text-rose-600 hover:underline font-semibold flex items-center gap-1">
                 <i data-lucide="trash-2" class="w-3 h-3"></i> Limpiar
@@ -436,50 +386,181 @@
             </div>
 
             <!-- Box Hash SHA-256 en Tiempo Real -->
-            <div class="p-3 bg-[#0b0f17] text-slate-200 rounded-xl space-y-1 border border-slate-800 shadow-sm">
-              <div class="text-[10px] text-amber-400 font-mono font-semibold uppercase tracking-wider flex justify-between items-center">
+            <div class="p-3 bg-[#0F2E28] text-slate-200 rounded-xl space-y-1 border border-emerald-900 shadow-sm">
+              <div class="text-[10px] text-amber-300 font-mono font-semibold uppercase tracking-wider flex justify-between items-center">
                 <span class="flex items-center gap-1">
                   <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Hash SHA-256 Actual
                 </span>
-                <span class="text-slate-400">Ley 527/1999</span>
+                <span class="text-emerald-200/80">Ley 527/1999</span>
               </div>
-              <div id="sidebar-hash-display" class="font-mono text-[10px] break-all text-emerald-400 bg-slate-900 p-2 rounded-lg border border-slate-800">Calculando hash...</div>
+              <div id="sidebar-hash-display" class="font-mono text-[10px] break-all text-emerald-300 bg-emerald-950 p-2 rounded-lg border border-emerald-800">Calculando hash...</div>
             </div>
           </div>
 
         </div>
 
-        <!-- FOOTER DE NAVEGACIÓN -->
-        <div class="bg-slate-50 border-t border-slate-200 p-4 flex items-center justify-between">
-          <button id="btn-prev-step" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-semibold px-4 py-2 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1">
+        <!-- FOOTER DE NAVEGACIÓN PASOS -->
+        <div class="bg-slate-50 border-t border-slate-200 p-3 flex items-center justify-between">
+          <button id="btn-prev-step" class="bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Anterior
           </button>
 
-          <button id="btn-next-step" class="allow-when-locked bg-[#0b0f17] hover:bg-slate-800 text-amber-400 text-xs font-bold px-5 py-2 rounded-lg transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer">
+          <button id="btn-next-step" class="allow-when-locked bg-[#0F2E28] hover:bg-emerald-900 text-amber-300 text-xs font-bold px-4 py-1.5 rounded-lg transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer">
             <span id="btn-next-step-text">Siguiente →</span>
           </button>
         </div>
 
       </section>
 
-      <!-- COLUMNA DERECHA: PREVISUALIZACIÓN CON FONDO DE GRILLA DE PUNTOS (DOT GRID) -->
-      <section id="preview-container" class="lg:col-span-7 dot-grid-pattern p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
+      <!-- COLUMNA 2: CONTROL DE LEGALIDAD / LAS CINCO REGLAS (CENTRO - lg:col-span-3) -->
+      <section class="lg:col-span-3 bg-white rounded-xl shadow-sm border border-slate-200/90 p-4 space-y-3 no-print">
+        <div class="border-b border-slate-100 pb-2.5">
+          <h2 class="text-base font-serif font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="scale" class="w-4 h-4 text-[#0F2E28]"></i> Control de Legalidad
+          </h2>
+          <p class="text-[11px] text-slate-500 font-sans mt-0.5">Verificación de las 5 reglas marco (Colombia)</p>
+        </div>
+
+        <!-- TARJETAS INDIVIDUALES DE LAS 5 REGLAS -->
+        <div class="space-y-2.5 text-xs">
+          
+          <!-- REGLA R1 APLICA -->
+          <div id="col2-card-r1" class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5 transition-all">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-bold text-slate-900 font-sans text-xs flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> R1 APLICA
+              </span>
+              <span id="col2-badge-r1" class="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                ⚠️ Licencia Limitada
+              </span>
+            </div>
+            <p class="text-[11px] font-semibold text-slate-800 leading-tight">Cesión Patrimonial Condicionada al Pago</p>
+            <p class="text-[10px] text-slate-600 leading-relaxed">
+              La transferencia patrimonial de derechos de autor se efectúa únicamente tras el pago completo de la mensualidad.
+            </p>
+            <div class="text-[9px] font-mono text-emerald-900 bg-emerald-50 p-1.5 rounded border border-emerald-200 font-semibold flex items-center gap-1">
+              <i data-lucide="book-open" class="w-3 h-3 text-emerald-700 shrink-0"></i> Ley 23 de 1982 · Decisión Andina 351
+            </div>
+          </div>
+
+          <!-- REGLA R2 APLICA -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-bold text-slate-900 font-sans text-xs flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> R2 APLICA
+              </span>
+              <span class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                ✓ Imperativo
+              </span>
+            </div>
+            <p class="text-[11px] font-semibold text-slate-800 leading-tight">Derechos Morales Inalienables</p>
+            <p class="text-[10px] text-slate-600 leading-relaxed">
+              Paternidad de la obra irrenunciable con permiso para inclusión en portafolio técnico profesional.
+            </p>
+            <div class="text-[9px] font-mono text-emerald-900 bg-emerald-50 p-1.5 rounded border border-emerald-200 font-semibold flex items-center gap-1">
+              <i data-lucide="book-open" class="w-3 h-3 text-emerald-700 shrink-0"></i> Ley 23 de 1982 (Art. 30)
+            </div>
+          </div>
+
+          <!-- REGLA R3 -->
+          <div id="col2-card-r3" class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5 transition-all">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-bold text-slate-900 font-sans text-xs flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> R3
+              </span>
+              <span id="col2-badge-r3" class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                ✓ NDA Activo (3a)
+              </span>
+            </div>
+            <p class="text-[11px] font-semibold text-slate-800 leading-tight">Secreto Empresarial y Confidencialidad</p>
+            <p class="text-[10px] text-slate-600 leading-relaxed">
+              Reserva de información confidencial y deber de borrado seguro de copias de trabajo.
+            </p>
+            <div class="text-[9px] font-mono text-emerald-900 bg-emerald-50 p-1.5 rounded border border-emerald-200 font-semibold flex items-center gap-1">
+              <i data-lucide="book-open" class="w-3 h-3 text-emerald-700 shrink-0"></i> Decisión Andina 486 · Ley 256/1996
+            </div>
+          </div>
+
+          <!-- REGLA R4 -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-bold text-slate-900 font-sans text-xs flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> R4
+              </span>
+              <span class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                ✓ SHA-256
+              </span>
+            </div>
+            <p class="text-[11px] font-semibold text-slate-800 leading-tight">Equivalencia Probatoria Mensaje de Datos</p>
+            <p class="text-[10px] text-slate-600 leading-relaxed">
+              Plena validez jurídica respaldada por sello de tiempo y hash criptográfico inalterable.
+            </p>
+            <div class="text-[9px] font-mono text-emerald-900 bg-emerald-50 p-1.5 rounded border border-emerald-200 font-semibold flex items-center gap-1">
+              <i data-lucide="book-open" class="w-3 h-3 text-emerald-700 shrink-0"></i> Ley 527 de 1999
+            </div>
+          </div>
+
+          <!-- REGLA R5 -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-bold text-slate-900 font-sans text-xs flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> R5
+              </span>
+              <span class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                ✓ 30 Días
+              </span>
+            </div>
+            <p class="text-[11px] font-semibold text-slate-800 leading-tight">Garantía Anti-Malware y Ciberseguridad</p>
+            <p class="text-[10px] text-slate-600 leading-relaxed">
+              Garantía de código libre de código malicioso con saneamiento técnico por 30 días calendario.
+            </p>
+            <div class="text-[9px] font-mono text-emerald-900 bg-emerald-50 p-1.5 rounded border border-emerald-200 font-semibold flex items-center gap-1">
+              <i data-lucide="book-open" class="w-3 h-3 text-emerald-700 shrink-0"></i> Ley 1273 de 2009
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COLUMNA 3: DOCUMENTO EN CURSO / VISTA PREVIA (DERECHA - lg:col-span-5) -->
+      <section id="preview-container" class="lg:col-span-5 dot-grid-pattern p-4 rounded-xl border border-slate-200/90 shadow-sm space-y-3">
         
-        <!-- Barra de Estado de la Vista Previa -->
-        <div class="bg-[#0b0f17] text-slate-200 px-4 py-2.5 rounded-xl shadow-md flex items-center justify-between text-xs border border-slate-800 no-print">
+        <!-- ENCABEZADO CON BADGE SHA-256 EN TIEMPO REAL -->
+        <div class="bg-[#0F2E28] text-slate-200 px-3.5 py-2.5 rounded-xl shadow-md flex flex-wrap items-center justify-between text-xs border border-emerald-900/60 no-print gap-2">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="font-semibold text-slate-200 font-sans">Vista Previa Hoja Carta</span>
+            <span class="font-bold text-white font-serif text-xs">Documento en curso</span>
           </div>
-          <span class="text-amber-400 text-[11px] font-mono flex items-center gap-1">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i> Formato Legal Colombia
-          </span>
+          <div class="flex items-center gap-1 bg-emerald-950 text-emerald-300 border border-emerald-700 text-[10px] font-mono font-bold px-2.5 py-1 rounded-lg">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>SHA-256: <span id="header-sha256-badge" class="font-normal text-slate-300">calculando...</span></span>
+          </div>
+        </div>
+
+        <!-- CUADRÍCULA RESUMEN SUPERIOR -->
+        <div id="preview-summary-grid" class="bg-white rounded-xl border border-slate-200 p-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs no-print shadow-xs font-sans">
+          <div>
+            <span class="text-[9px] text-slate-500 uppercase tracking-wider block font-semibold">Contratante</span>
+            <strong id="summary-grid-client" class="text-slate-900 truncate block text-[11px]">---</strong>
+          </div>
+          <div>
+            <span class="text-[9px] text-slate-500 uppercase tracking-wider block font-semibold">Contratista</span>
+            <strong id="summary-grid-dev" class="text-slate-900 truncate block text-[11px]">---</strong>
+          </div>
+          <div>
+            <span class="text-[9px] text-slate-500 uppercase tracking-wider block font-semibold">Valor Mensual</span>
+            <strong id="summary-grid-value" class="text-emerald-800 font-mono font-bold block text-[11px]">$0 COP</strong>
+          </div>
+          <div>
+            <span class="text-[9px] text-slate-500 uppercase tracking-wider block font-semibold">Plazo Pactado</span>
+            <strong id="summary-grid-duration" class="text-slate-900 font-mono block text-[11px]">1 mes(es)</strong>
+          </div>
         </div>
 
         <!-- HOJA DE PAPEL TIPO CARTA DEL CONTRATO -->
-        <div class="paper-sheet text-slate-900 shadow-xl rounded-md">
+        <div class="paper-sheet text-slate-900 shadow-lg rounded-md">
           <div class="legal-watermark-text">LEGALDEV 2026</div>
-          <div id="contract-preview" class="contract-body text-xs space-y-5">
+          <div id="contract-preview" class="contract-body text-xs space-y-4">
             <!-- Renderizado dinámicamente desde app.js -->
           </div>
         </div>
@@ -489,19 +570,72 @@
     </div>
   </main>
 
+  <!-- BARRA INFERIOR FIJA (ACTION DOCK) -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#0F2E28] text-white py-2.5 px-4 sm:px-8 border-t border-emerald-950/80 shadow-2xl no-print">
+    <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Estado del borrador (Izquierda) -->
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-xs font-semibold text-slate-200 font-sans">Borrador activo</span>
+        <span class="text-[10px] text-emerald-300 font-mono bg-emerald-950/90 border border-emerald-800 px-2 py-0.5 rounded hidden sm:inline">Autoguardado</span>
+      </div>
+
+      <!-- Botones Operativos (Derecha) -->
+      <div class="flex flex-wrap items-center gap-2">
+        
+        <!-- Cargar ejemplo NovaTech -->
+        <button id="btn-demo" class="bg-emerald-950 hover:bg-emerald-900 text-amber-300 border border-emerald-700/80 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 shadow-xs">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Cargar ejemplo (NovaTech)</span>
+        </button>
+
+        <!-- Compartir Enlace -->
+        <button id="btn-share-link" class="allow-when-locked bg-emerald-950 hover:bg-emerald-900 text-amber-300 border border-emerald-700/80 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 shadow-xs" title="Generar enlace de firma remota por URL">
+          <i data-lucide="share-2" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span class="hidden sm:inline">Compartir Enlace</span>
+        </button>
+
+        <!-- Exportar JSON / Importar JSON -->
+        <div class="flex items-center border border-emerald-800 rounded-lg overflow-hidden bg-emerald-950">
+          <button id="btn-export-json" class="hover:bg-emerald-900 text-slate-200 text-xs font-medium px-2.5 py-1.5 transition-colors border-r border-emerald-800 flex items-center gap-1" title="Descargar datos en JSON">
+            <i data-lucide="file-json" class="w-3.5 h-3.5 text-amber-400"></i> Exportar JSON
+          </button>
+          <label class="hover:bg-emerald-900 text-slate-200 text-xs font-medium px-2.5 py-1.5 transition-colors cursor-pointer flex items-center gap-1" title="Cargar datos desde JSON">
+            <i data-lucide="upload" class="w-3.5 h-3.5 text-slate-300"></i>
+            <input type="file" id="input-import-json" accept=".json" class="hidden">
+          </label>
+        </div>
+
+        <!-- Limpiar -->
+        <button id="btn-clear-draft" class="allow-when-locked bg-emerald-950 hover:bg-rose-950 text-rose-300 border border-emerald-800 hover:border-rose-800 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-xs" title="Reiniciar borrador del contrato">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+          <span>Limpiar</span>
+        </button>
+
+        <!-- Botón Principal: Descargar PDF -->
+        <button id="btn-print" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1.5 shadow-md hover:shadow-amber-500/20">
+          <i data-lucide="printer" class="w-4 h-4 stroke-[2.5]"></i>
+          <span>Descargar PDF</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL DE CIERRE Y FINALIZACIÓN DEL CONTRATO -->
   <div id="modal-completion" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop-blur bg-slate-950/80 hidden fade-in-fast no-print">
     <div class="bg-white rounded-2xl max-w-xl w-full shadow-2xl border border-slate-200 overflow-hidden text-slate-900">
       
       <!-- Modal Header -->
-      <div class="bg-[#0b0f17] text-white p-5 border-b border-amber-500/30 flex items-start justify-between">
+      <div class="bg-[#0F2E28] text-white p-5 border-b border-emerald-800 flex items-start justify-between">
         <div class="flex items-center gap-3">
-          <div class="bg-amber-500/20 text-amber-400 p-2.5 rounded-xl border border-amber-500/30">
+          <div class="bg-emerald-950 text-amber-300 p-2.5 rounded-xl border border-emerald-800">
             <i data-lucide="shield-check" class="w-6 h-6"></i>
           </div>
           <div>
             <h3 class="text-base font-bold font-serif text-white">Contrato Formalizado y Sellado</h3>
-            <p class="text-xs text-slate-400 font-mono">Sello Criptográfico SHA-256 (Ley 527/1999)</p>
+            <p class="text-xs text-emerald-200/80 font-mono">Sello Criptográfico SHA-256 (Ley 527/1999)</p>
           </div>
         </div>
         <button id="btn-close-modal" class="text-slate-400 hover:text-white transition-colors">
@@ -523,7 +657,7 @@
         <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2">
           <div class="font-bold text-slate-900 uppercase tracking-wide border-b border-slate-200 pb-1 text-[11px] flex justify-between font-mono">
             <span>Resumen Ejecutivo</span>
-            <span class="text-amber-700">Colombia</span>
+            <span class="text-emerald-800">Colombia</span>
           </div>
 
           <div class="grid grid-cols-2 gap-2 text-slate-700">
@@ -537,7 +671,7 @@
             </div>
             <div>
               <span class="text-slate-500 block text-[10px]">Valor Mensual Bolsa:</span>
-              <strong id="modal-summary-value" class="text-amber-800 font-mono font-bold">---</strong>
+              <strong id="modal-summary-value" class="text-emerald-900 font-mono font-bold">---</strong>
             </div>
             <div>
               <span class="text-slate-500 block text-[10px]">Plazo Pactado:</span>
@@ -550,11 +684,11 @@
         <div class="space-y-1">
           <div class="flex justify-between items-center text-[11px]">
             <span class="font-semibold text-slate-700 font-mono">Sello Digital SHA-256:</span>
-            <button id="btn-copy-hash" class="text-amber-700 hover:underline font-bold text-[10px] font-mono flex items-center gap-1">
+            <button id="btn-copy-hash" class="text-emerald-800 hover:underline font-bold text-[10px] font-mono flex items-center gap-1">
               <i data-lucide="copy" class="w-3 h-3"></i> Copiar Hash
             </button>
           </div>
-          <div id="modal-hash-display" class="font-mono text-[10px] bg-[#0b0f17] text-emerald-400 p-3 rounded-xl break-all border border-slate-800 shadow-inner">
+          <div id="modal-hash-display" class="font-mono text-[10px] bg-[#0F2E28] text-emerald-300 p-3 rounded-xl break-all border border-emerald-900 shadow-inner">
             ---
           </div>
         </div>
@@ -562,7 +696,7 @@
         <!-- Módulos de Firma dentro del Modal -->
         <div class="space-y-2 pt-2 border-t border-slate-200">
           <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1 font-mono">
-            <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-600"></i> Firmas Registradas (Ley 527/1999)
+            <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-emerald-700"></i> Firmas Registradas (Ley 527/1999)
           </h4>
           <div id="signature-cards-modal" class="max-h-64 overflow-y-auto space-y-3 p-1">
             <!-- Renderizado dinámicamente desde app.js -->
@@ -577,13 +711,13 @@
         </button>
 
         <div class="flex items-center gap-2">
-          <button id="btn-modal-share" class="bg-slate-900 hover:bg-slate-800 text-amber-400 text-xs font-semibold px-3 py-2 rounded-lg border border-amber-500/30 transition-colors flex items-center gap-1">
+          <button id="btn-modal-share" class="bg-emerald-950 hover:bg-emerald-900 text-amber-300 text-xs font-semibold px-3 py-2 rounded-lg border border-emerald-800 transition-colors flex items-center gap-1">
             <i data-lucide="share-2" class="w-3.5 h-3.5"></i> Compartir Enlace
           </button>
           <button id="btn-modal-json" class="bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors flex items-center gap-1">
             <i data-lucide="file-json" class="w-3.5 h-3.5 text-amber-400"></i> JSON
           </button>
-          <button id="btn-modal-print" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg transition-colors shadow-md flex items-center gap-1.5">
+          <button id="btn-modal-print" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg transition-colors shadow-md flex items-center gap-1.5">
             <i data-lucide="printer" class="w-3.5 h-3.5 stroke-[2.5]"></i> Exportar PDF Oficial
           </button>
         </div>
@@ -592,8 +726,8 @@
     </div>
   </div>
 
-  <!-- CONTAINER DE TOAST NOTIFICATIONS SAAS 2026 -->
-  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none no-print"></div>
+  <!-- CONTAINER DE TOAST NOTIFICATIONS SAAS -->
+  <div id="toast-container" class="fixed bottom-16 right-5 z-50 flex flex-col gap-2 pointer-events-none no-print"></div>
 
   <script src="app.js"></script>
 </body>
